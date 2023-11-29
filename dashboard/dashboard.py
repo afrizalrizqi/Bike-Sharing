@@ -160,14 +160,14 @@ st.markdown('---')
 # st.plotly_chart(fig, use_container_width=True)
 
 
-question1 = main_df.groupby(by="weathersit").dteday.nunique().sort_values(ascending=False)
-print(question1)
-# biw=plt.bar(['1','2','3'], question1)
+# question1 = main_df.groupby(by="weathersit").dteday.nunique().sort_values(ascending=False)
+# print(question1)
+# plt.bar(['1','2','3'], question1)
 
-x = np.linspace(main_df)
-y = np.sin(x)
+# x = np.linspace(main_df)
+# y = np.sin(x)
 
-fig, ax=plt.subplots()
-ax.plot(x,y)
+# fig, ax=plt.subplots()
+# ax.plot(x,y)
 
 # st.plotly_chart(biw, use_container_width=True)
