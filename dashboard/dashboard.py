@@ -107,6 +107,7 @@ max_date = df["dteday"].max()
 # SIDEBAR
 
 with st.sidebar:
+    
     st.sidebar.header("Filter")
     
     #mengambil start date dan end date
@@ -121,6 +122,13 @@ st.sidebar.header("Visit My Profile")
 st.sidebar.markdown("Afrizal Rizqi Syahputra")
     
 col1, col2 = st.sidebar.columns(2)
+
+with col1:
+    st.markdown("[![LinkedIn](https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg)](www.linkedin.com/in/afrizal-rizqi-3a05201a1)")
+
+with col2:
+    st.markdown("[![Github](https://img.icons8.com/glyph-neue/64/FFFFFF/github.png)](https://github.com/afrizalrizqi)")
+    
     
 #hubungkan filter dengan main_df
 main_df = df[
@@ -142,32 +150,30 @@ st.markdown("##")
 col1, col2 = st.columns(2)
 
 with col1:
-    registered_users = main_df['registered'].sum()
+    registered_users = df['registered'].sum()
     st.metric("Registered Users", value = registered_users)
     
 with col2:
-    casual_users = main_df['casual'].sum()
+    casual_users = df['casual'].sum()
     st.metric("Casual Users", value = casual_users)
 
 st.markdown('---')
 
-# CHART
-# fig = px.bar(monthly_users_df,
-#               x='weathersit',
-#               y=['casual_rides', 'registered_rides'],
-#               title="Pada musim apa banyak pengguna"
-#               )
-# st.plotly_chart(fig, use_container_width=True)
+# CHART 1
+
+st.header('Number of Unique Days for Each Weathersit')
+question1 = df.groupby(by="weathersit").dteday.nunique().sort_values(ascending=False)
+fig, ax = plt.subplots()
+st.bar_chart(question1)
 
 
-# question1 = main_df.groupby(by="weathersit").dteday.nunique().sort_values(ascending=False)
-# print(question1)
-# plt.bar(['1','2','3'], question1)
+#CHART 2
+st.header('Number of Unique Days for Each Weathersit')
+data = df[["registered", "casual"]]
+data = data.sort_values(by="registered", ascending=False)
+data = data.sum()
+fig, ax = plt.subplots()
+st.bar_chart(data)
 
-# x = np.linspace(main_df)
-# y = np.sin(x)
 
-# fig, ax=plt.subplots()
-# ax.plot(x,y)
-
-# st.plotly_chart(biw, use_container_width=True)
+st.caption('Copyright (c), created by Afrizal Rizqi Syahputra')
